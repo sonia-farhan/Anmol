@@ -79,12 +79,12 @@ const Home = () => {
               treat yourself to an enticing variety of freshly baked goods,
               including bread, cakes, pastries, cookies, and biscuits, all
               crafted with care by our talented bakers using the finest
-              ingredients.
+              ingredients. </p>
               <p className="pt-2">Craving something savory? Explore our selection of
               mouthwatering fast food items, from sandwiches and wraps to savory
               pastries and snacks, perfect for a quick and satisfying meal on
               the go.</p> 
-            </p>
+           
           </div>
         </div>
 
