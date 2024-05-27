@@ -114,7 +114,7 @@ const UpdateProduct = () => {
     fetchCategories();
     fetchProduct();
    
-  }, [id]);
+  }, [id, fetchProduct]);
 
   return (
     <>

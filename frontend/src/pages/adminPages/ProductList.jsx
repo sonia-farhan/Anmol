@@ -62,7 +62,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-    },[page])
+    },[page, products])
     const loadMore=useCallback(async()=>{
         try {
             setLoading(true)
@@ -117,7 +117,7 @@ const ProductList = () => {
         }
       };
   
-      const getFilterProduct=async()=>{
+      const getFilterProduct=useCallback(async()=>{
         try {
             const res=await axios.post('/api/v1/product/filter-product',{checked})
             if(res){
@@ -132,7 +132,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-      };
+      },[checked, products]);
 
 
     useEffect(()=>{
@@ -142,16 +142,16 @@ const ProductList = () => {
 
     useEffect(()=>{
         if(checked.length) getFilterProduct()
-    },[checked.length])
+    },[checked.length, getFilterProduct])
 
     useEffect(()=>{
         if(!checked.length) fetchProducts()
-    },[checked.length])
+    },[checked.length, fetchProducts])
 
     useEffect(()=>{
         if(page === 1) return;
         loadMore();
-    },[page])
+    },[page,loadMore])
   return (
     <>
      <SEO

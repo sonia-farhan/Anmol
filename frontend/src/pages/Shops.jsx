@@ -1,6 +1,4 @@
-import React from "react";
-import { useEffect, useState } from "react";
-import { useCallback } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -13,7 +11,7 @@ const Shops = () => {
   const [categories, setCategories] = useState([]);
   const [checked, setChecked] = useState([]);
   const [total, setTotal] = useState("");
-  const [page, setpage] = useState(1);
+  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const [cart, setCart] = useCart();
 
@@ -51,7 +49,7 @@ const Shops = () => {
       setLoading(false);
       console.log("some error occur while fetching all products");
     }
-  }, [page]);
+  }, [page, products]);
 
 
   const loadMore = useCallback(async () => {
@@ -80,7 +78,21 @@ const Shops = () => {
       console.error("Error fetching categories:", error);
     }
   };
-
+  const getFilterProduct =useCallback( async () => {
+    try {
+      const res = await axios.post("/api/v1/product/filter-product", {
+        checked,
+      });
+      if (res) {
+        setProducts(res?.data.data);
+      } else {
+        console.log("product cannot access successfully");
+        toast.error(res?.data.message);
+      }
+    } catch (error) {
+      console.log("some error occur while fetching all products");
+    }
+  },[checked,products]);
  
 
   useEffect(() => {
@@ -89,28 +101,12 @@ const Shops = () => {
   }, []);
 
   useEffect(() => {
-    if (checked.length) {
-        const getFilterProduct = async () => {
-            try {
-              const res = await axios.post("/api/v1/product/filter-product", {
-                checked,
-              });
-              if (res) {
-                setProducts(res?.data.data);
-              } else {
-                console.log("product cannot access successfully");
-                toast.error(res?.data.message);
-              }
-            } catch (error) {
-              console.log("some error occur while fetching all products");
-            }
-          };
-    }
-  }, [checked.length,]);
+    if (checked.length) getFilterProduct();
+  }, [checked.length, getFilterProduct]);
 
   useEffect(() => {
     if (!checked.length) fetchProducts();
-  }, [!checked.length]);
+  }, [checked.length, fetchProducts]);
 
   useEffect(() => {
     if (page === 1) return;
@@ -217,7 +213,7 @@ const Shops = () => {
                 className="btn btn-warning"
                 onClick={(e) => {
                   e.preventDefault();
-                  setpage(page + 1);
+                  setPage(page + 1);
                 }}
               >
                 {loading ? "Loadding..." : "Load More"}
