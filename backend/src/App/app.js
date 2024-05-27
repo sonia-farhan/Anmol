@@ -15,12 +15,18 @@ const __dirname=path.dirname(__filename);
 
 
 
+const corsOptions = {
+    origin: 'anmol-d5ww.vercel.app', 
+    methods: ['GET', 'POST'], 
+    credentials: true, 
+  };
+
 //middleware
 app.use(express.json());
 app.use(express.static("public"))
 app.use(express.static(path.join(__dirname, '../frontend/build')))
 app.use(morgan('dev'));
-app.use(cors());
+app.use(cors(corsOptions));
 app.use(cookieParser());
 
 //routing.......
