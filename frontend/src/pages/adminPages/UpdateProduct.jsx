@@ -108,7 +108,7 @@ const UpdateProduct = () => {
     } catch (error) {
       console.error("Error fetching product:", error);
     }
-  },[id, productData]);
+  },[id]);
 
   useEffect(() => {
     fetchCategories();

@@ -62,7 +62,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-    },[page, products])
+    },[page])
     const loadMore=useCallback(async()=>{
         try {
             setLoading(true)
@@ -132,7 +132,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-      },[checked, products]);
+      },[checked]);
 
 
     useEffect(()=>{
