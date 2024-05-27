@@ -1,5 +1,6 @@
 import React from "react";
 import { useEffect, useState } from "react";
+import { useCallback } from "react";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { Link } from "react-router-dom";
@@ -35,7 +36,7 @@ const Shops = () => {
     setChecked(all);
   };
 
-  const fetchProducts = async () => {
+  const fetchProducts = useCallback(async () => {
     try {
       setLoading(true);
       const res = await axios.get(`/api/v1/product/product-list/${page}`);
@@ -50,8 +51,10 @@ const Shops = () => {
       setLoading(false);
       console.log("some error occur while fetching all products");
     }
-  };
-  const loadMore = async () => {
+  }, [page]);
+
+
+  const loadMore = useCallback(async () => {
     try {
       setLoading(true);
       const { data } = await axios.get(`/api/v1/product/product-list/${page}`);
@@ -65,7 +68,7 @@ const Shops = () => {
       setLoading(false);
       console.log("some error occur while fetching all products");
     }
-  };
+  }, [page]);
 
  
 
@@ -78,42 +81,41 @@ const Shops = () => {
     }
   };
 
-  const getFilterProduct = async () => {
-    try {
-      const res = await axios.post("/api/v1/product/filter-product", {
-        checked,
-      });
-      if (res) {
-        setProducts(res?.data.data);
-      } else {
-        console.log("product cannot access successfully");
-        toast.error(res?.data.message);
-      }
-    } catch (error) {
-      console.log("some error occur while fetching all products");
-    }
-  };
+ 
 
   useEffect(() => {
     fetchCategories();
     totalProduct();
-  },);
+  }, []);
 
   useEffect(() => {
-    if (checked.length) getFilterProduct();
-  }, 
-//   [checked.length, getFilterProduct]
-  );
+    if (checked.length) {
+        const getFilterProduct = async () => {
+            try {
+              const res = await axios.post("/api/v1/product/filter-product", {
+                checked,
+              });
+              if (res) {
+                setProducts(res?.data.data);
+              } else {
+                console.log("product cannot access successfully");
+                toast.error(res?.data.message);
+              }
+            } catch (error) {
+              console.log("some error occur while fetching all products");
+            }
+          };
+    }
+  }, [checked.length,]);
 
   useEffect(() => {
     if (!checked.length) fetchProducts();
-  },);
+  }, [!checked.length]);
 
   useEffect(() => {
     if (page === 1) return;
     loadMore();
-  }, 
-  [page,loadMore]);
+  }, [page, loadMore]);
   return (
     <>
       <SEO
@@ -197,7 +199,7 @@ const Shops = () => {
                             "cart",
                             JSON.stringify([...cart, p])
                           );
-                          toast.success("Item added Successfully");
+                          toast.success("Item add Successfully");
                         }}
                       >
                         Add to Cart

@@ -1,5 +1,6 @@
 import React from 'react'
 import { useEffect, useState } from 'react'
+import { useCallback } from 'react'
 import axios from 'axios'
 import {toast} from 'react-toastify'
 import { Link } from 'react-router-dom'
@@ -42,7 +43,7 @@ const ProductList = () => {
 
     }
 
-    const fetchProducts=async()=>{
+    const fetchProducts=useCallback(async()=>{
         try {
             setLoading(true)
             const res=await axios.get(`/api/v1/product/product-list/${page}`)
@@ -61,8 +62,8 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-    }
-    const loadMore=async()=>{
+    },[page])
+    const loadMore=useCallback(async()=>{
         try {
             setLoading(true)
             const {data}=await axios.get(`/api/v1/product/product-list/${page}`)
@@ -81,7 +82,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-    }
+    },[page,products]);
 
 
     const handleDelete=async(Id)=>{
@@ -131,7 +132,7 @@ const ProductList = () => {
             console.log("some error occur while fetching all products")
             
         }
-      }
+      };
 
 
     useEffect(()=>{
@@ -141,14 +142,14 @@ const ProductList = () => {
 
     useEffect(()=>{
         if(checked.length) getFilterProduct()
-    },[checked.length,getFilterProduct()])
+    },[checked.length])
 
     useEffect(()=>{
         if(!checked.length) fetchProducts()
-    },)
+    },[checked.length])
 
     useEffect(()=>{
-        if(page === 1) return
+        if(page === 1) return;
         loadMore();
     },[page])
   return (

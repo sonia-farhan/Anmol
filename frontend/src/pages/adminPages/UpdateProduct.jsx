@@ -4,6 +4,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useNavigate, useParams } from "react-router-dom";
 import SEO from "../../component/SEO";
+import { useCallback } from "react";
 
 const UpdateProduct = () => {
   const { Option } = Select;
@@ -95,7 +96,7 @@ const UpdateProduct = () => {
     }
   };
 
-  const fetchProduct = async () => {
+  const fetchProduct =useCallback( async () => {
     try {
       const response = await axios.get(`/api/v1/product/single-product/${id}`);
       if(response){
@@ -107,11 +108,12 @@ const UpdateProduct = () => {
     } catch (error) {
       console.error("Error fetching product:", error);
     }
-  };
+  },[id, productData]);
 
   useEffect(() => {
-    fetchProduct();
     fetchCategories();
+    fetchProduct();
+   
   }, [id]);
 
   return (

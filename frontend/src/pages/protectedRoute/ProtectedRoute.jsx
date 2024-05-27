@@ -7,7 +7,7 @@ import Spinner from '../../component/Spinner'
 
 const ProtectedRoute = ({children}) => {
     const navigate=useNavigate()
-    const {isLoggedIn, user,userType }=useSelector(state=>state.auth)
+    const {isLoggedIn,userType }=useSelector(state=>state.auth)
 
     useEffect(()=>{
         if(!isLoggedIn){
@@ -23,7 +23,7 @@ const ProtectedRoute = ({children}) => {
             }
         }
 
-    },[isLoggedIn, userType])
+    },[isLoggedIn, userType, navigate])
   return (
     isLoggedIn ? children : <Spinner path="" />
   )
