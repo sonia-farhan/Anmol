@@ -87,7 +87,7 @@ const navigate=useNavigate()
 
       useEffect(()=>{
        fetchUser();
-      },[])
+      },)
   return (
 <>
 <SEO

@@ -64,7 +64,7 @@ const listItemData = [
 
 
 function SideNav(props) {
-  const [show, setShow] = useState(false)
+  // const [show, setShow] = useState(false)
   const { window } = props;
   const navigate = useNavigate();
   const dispatch = useDispatch()

@@ -1,13 +1,10 @@
 import { Box, CssBaseline, Toolbar } from '@mui/material';
-import React, { useState } from 'react';
-import { useContext } from 'react';
-import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { Outlet, Link, useNavigate, Navigate } from "react-router-dom";
+import React from 'react';
+
+import { Outlet,} from "react-router-dom";
 // import AuthContext from '../../auth/auth-context';
 import Header from './Header';
-import Navbar from './Navbar';
-import SideNav from './SideNav';
+;
 
 
 

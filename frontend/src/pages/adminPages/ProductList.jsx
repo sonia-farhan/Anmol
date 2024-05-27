@@ -141,11 +141,11 @@ const ProductList = () => {
 
     useEffect(()=>{
         if(checked.length) getFilterProduct()
-    },[checked.length])
+    },[checked.length,getFilterProduct()])
 
     useEffect(()=>{
         if(!checked.length) fetchProducts()
-    },[])
+    },)
 
     useEffect(()=>{
         if(page === 1) return

@@ -20,7 +20,7 @@ const Header = () => {
   const navigate = useNavigate();
   const location=useLocation()
   const categories = Category();
-  const [cart, setCart] = useCart();
+  const [cart] = useCart();
 
   // Function to toggle the header visibility
   const toggleHeader = () => {

@@ -44,9 +44,9 @@ const Cart = () => {
         <div className="text-center">
           <p className="fw-bold fs-2">Cart</p>
 
-          {/* <p className="mb-0 fw-bold " style={{ display: "inline-block" }}>
+          <p className="mb-0 fw-bold " style={{ display: "inline-block" }}>
             Hello <span className="fs-4 text-orange">{user.name}</span> You have{" "}
-          </p> */}
+          </p>
           {cart.length < 1 ? (
             <div>
               <p className="fs-6 mb-0 text-black" style={{ display: "inline-block" }}>

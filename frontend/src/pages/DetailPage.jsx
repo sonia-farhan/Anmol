@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useState } from "react";
+import React, { useState ,useCallback} from "react";
 import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { useCart } from "../context/CartContext";
@@ -16,7 +16,7 @@ const DetailPage = () => {
 
 
 
-  const getProduct = async () => {
+  const getProduct =useCallback(async () => {
     try {
       const response = await axios.get(`/api/v1/product/single-product/${id}`);
       if (response) {
@@ -27,7 +27,7 @@ const DetailPage = () => {
     } catch (error) {
       console.log(error);
     }
-  };
+  }, [id])
 
   const similarProduct=async(pid, cid)=>{
     try {
@@ -45,7 +45,7 @@ const DetailPage = () => {
 
   useEffect(() => {
     if (id) getProduct();
-  }, [id]);
+  }, [id, getProduct]);
   return (
     <>
      <SEO

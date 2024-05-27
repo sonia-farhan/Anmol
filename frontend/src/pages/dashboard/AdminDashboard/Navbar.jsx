@@ -1,12 +1,12 @@
-import { AppBar ,Avatar,Button,Hidden,IconButton,Toolbar, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { AppBar ,Avatar,Hidden,IconButton,Toolbar } from '@mui/material';
+import React from 'react';
 import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu'
-import { ArrowForward, NotificationAdd } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+
+import { Link } from 'react-router-dom';
 import {  useSelector } from 'react-redux';
 
-import { MdOutlineMarkChatUnread } from 'react-icons/md';
+
 // import NotificationsPopover from '../components/notification-bar/Notifications';
 
 
@@ -36,7 +36,7 @@ import { MdOutlineMarkChatUnread } from 'react-icons/md';
            <AppBar className='nav-bg' position="fixed" sx={{ background: "transparent", boxShadow:"0" }}>
             <Toolbar className=''  style={{display:'flex',justifyContent:'space-between'}} >
                  <div className=" zoom d-lg-block d-none" style={{width:"7rem"}}>
-                <img width={"100%"} style={{width:"7rem", height:"3rem"}} src={user.avatar} alt="user-photo" />
+                <img width={"100%"} style={{width:"7rem", height:"3rem"}} src={user.avatar} alt={user.name} />
                 </div>
 
             {/* <Box className="" sx={{display:{md:"none",sm:"block"}}}>

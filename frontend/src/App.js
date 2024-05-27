@@ -1,5 +1,5 @@
 import "./App.css";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Layout from "./component/layout/Layout";
 import {
@@ -31,17 +31,17 @@ import { UserProfile } from "./component";
 
 function App() {
   const dispatch=useDispatch()
-  const [ setIsLoading]=useState(true)
+  // const [ setIsLoading]=useState(true)
   // const { isLoggedIn, user, userType, token } = useSelector((state) => state.auth);
 
 useEffect(() => {
   dispatch(fetchUser())
-      .then(() => setIsLoading(false))
-      .catch((error) => {
-        console.error("Error fetching user data:", error);
-        setIsLoading(false);
-      });
-}, [dispatch, setIsLoading]);
+      // .then(() => setIsLoading(false))
+      // .catch((error) => {
+      //   console.error("Error fetching user data:", error);
+      //   setIsLoading(false);
+      // });
+}, [dispatch]);
 
 
 

@@ -4,7 +4,6 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import { useSelector } from "react-redux";
 import Modal from 'react-bootstrap/Modal'
-import Button from 'react-bootstrap/Button'
 import { LoadSpinner } from "../../component";
 import SEO from "../../component/SEO";
 
@@ -14,7 +13,7 @@ const Category = () => {
   const [name, setName] = useState("");
   const [modalShow, setModalShow]=useState(false);
   const [selectedCategoryId, setSelectedCategoryId]=useState(null)
-  const { user , token} = useSelector((state) => state.auth); 
+  const { user } = useSelector((state) => state.auth); 
 
   const submitCategory = async (e) => {
     e.preventDefault();
@@ -158,7 +157,7 @@ const Category = () => {
     <tbody>
     {category.map((item, index) => (
       <tr className="ps-5" key={item._id}>
-        <td scope="row">{index+1}</td>
+        <td >{index+1}</td>
         <td className="px-3">{item.slug}</td>
         <td>
           <div className="d-flex align-items-center justify-content-start gap-3">

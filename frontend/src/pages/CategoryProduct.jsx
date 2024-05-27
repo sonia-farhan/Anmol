@@ -1,5 +1,5 @@
 import React from 'react'
-import { useState, useEffect } from 'react'
+import { useState, useEffect ,useCallback} from 'react'
 import axios from 'axios'
 import { useParams } from 'react-router-dom'
 import {toast} from 'react-toastify'
@@ -14,22 +14,21 @@ const CategoryProduct = () => {
     const [cart, setCart]=useCart()
   
    
-      const categoryProduct=async()=>{
-        try {
-            const {data}=await axios.get(`/api/v1/product/category-product/${slug}`)
-            if(data){
-               setProducts(data?.product)
-               setCategory(data?.category)
-            }
-            else{
-                toast.error("Products Not found")
-            }
-        } catch (error) {
-            console.log(error)
-            
+    const categoryProduct = useCallback(async () => {
+      try {
+        const { data } = await axios.get(`/api/v1/product/category-product/${slug}`);
+        if (data) {
+          setProducts(data?.product);
+          setCategory(data?.category);
+        } else {
+          toast.error('Products Not found');
         }
+      } catch (error) {
+        console.log(error);
       }
+    }, [slug]);
 
+    
       useEffect(()=>{
       if(slug) categoryProduct()
       },[slug, categoryProduct])

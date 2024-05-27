@@ -1,11 +1,10 @@
-import { AppBar ,Avatar,Button,Hidden,IconButton,Toolbar, Typography } from '@mui/material';
-import React, { useEffect, useState } from 'react';
+import { AppBar ,Avatar,Hidden,IconButton,Toolbar } from '@mui/material';
+import React from 'react';
 import Box from '@mui/material/Box';
 import MenuIcon from '@mui/icons-material/Menu'
-import { ArrowForward, NotificationAdd } from '@mui/icons-material';
-import { Link, useLocation } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import { MdOutlineMarkChatUnread } from 'react-icons/md';
+// import { MdOutlineMarkChatUnread } from 'react-icons/md';
 // import NotificationsPopover from '../components/notification-bar/Notifications';
 
 

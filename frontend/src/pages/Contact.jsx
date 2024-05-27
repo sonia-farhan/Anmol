@@ -5,7 +5,7 @@ import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { useState } from "react";
 import SEO from "../component/SEO";
 const Contact = () => {
-  const [loading, setLoading]=useState(false)
+  // const [loading, setLoading]=useState(false)
   const [contactData, setContactData]=useState({
     name:"",
     email:"",
@@ -129,7 +129,8 @@ const Contact = () => {
                       className="bg-orange-color px-5 py-2 border-0 rounded-2 text-white fw-bold"
                       type="submit"
                     >
-                    {loading ? "Submitting..." : "Submit"}
+                    {/* {loading ? "Submitting..." : "Submit"} */}
+                    Submit
                     </button>
                   </div>
                 </div>

@@ -40,7 +40,7 @@ const Login = () => {
       const response=await axios.post('/api/v1/auth/login', loginData)
       setLoading(false)
       if(response?.data.success){
-        const user = response.data.data;
+        // const user = response.data.data;
         const userData = response.data.data;
        const { refreshToken, role: userType } = userData; 
       //  console.log("token", refreshToken)

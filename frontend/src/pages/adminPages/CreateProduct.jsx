@@ -124,7 +124,7 @@ const handleChange = (e) => {
                       <div className='mb-3'>
                         {productData.productImage && (
                          <div className='text-center'>
-                          <img src={URL.createObjectURL(productData.productImage)} alt="product photo"  height={'200px'} className='mt-3'/>
+                          <img src={URL.createObjectURL(productData.productImage)} alt="name"  height={'200px'} className='mt-3'/>
                          </div>
                         )
                     

@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const AdminProtectedRoute = ({children}) => {
     const [ok, setOk]=useState(false)
-     const {token, user}=useSelector((state)=> state.auth)
+     const {token}=useSelector((state)=> state.auth)
 
     useEffect(()=>{
       const checkAuth=async()=>{
